@@ -1,7 +1,7 @@
 name: GitHub Repo Request
 description: Request a new GitHub repository.
 title: "github-repo-request: <repo-name>"
-labels: ["enhancement", "github"]
+labels: ["Repository", "GitHub", "Repo Creation", "GitHub Repository"]
 body:
   - type: input
     id: repo-name
@@ -46,11 +46,21 @@ body:
         @janedoe
     validations:
       required: true
-  - type: checkboxes
-    id: acknowledgment
+  - type: textarea
+    id: approvers
     attributes:
-      label: Acknowledgment
-      description: Before submitting, please confirm you have read and understood the project's contribution guidelines.
-      options:
-        - label: I have read and agree to the guidelines.
-          required: true
+      label: Approvers
+      description: List the GitHub usernames or teams who are authorized to approve this repository request.
+      placeholder: |
+        @my-organization/admins
+        @janesmith
+    validations:
+      required: true
+  - type: textarea
+    id: secrets-access
+    attributes:
+      label: Secrets Access
+      description: If this repository needs access to any secrets, please list them and provide a brief justification for each.
+      placeholder: |
+        - SECRET_KEY: Used for API authentication.
+        - DB_PASSWORD: For connecting to the production database.
