@@ -1,0 +1,56 @@
+name: GitHub Repo Request
+description: Request a new GitHub repository.
+title: "github-repo-request: <repo-name>"
+labels: ["enhancement", "github"]
+body:
+  - type: input
+    id: repo-name
+    attributes:
+      label: Repository Name
+      description: The desired name for the new GitHub repository.
+      placeholder: my-awesome-project
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Repository Purpose
+      description: A brief description of what this repository will be used for.
+      placeholder: This repo is for our new internal API.
+    validations:
+      required: true
+  - type: dropdown
+    id: visibility
+    attributes:
+      label: Repository Visibility
+      description: Should this repository be public or private?
+      options:
+        - Public
+        - Private
+    validations:
+      required: true
+  - type: input
+    id: rulesets
+    attributes:
+      label: Rulesets
+      description: Specify any required rulesets, such as branch protection rules (e.g., "main branch requires 2 approvals").
+      placeholder: main branch requires 1 approval
+  - type: textarea
+    id: team-membership
+    attributes:
+      label: Team/Collaborator Membership
+      description: List the teams and/or individual GitHub usernames that need access to this repository.
+      placeholder: |
+        @my-organization/dev-team
+        @johndoe
+        @janedoe
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgment
+    attributes:
+      label: Acknowledgment
+      description: Before submitting, please confirm you have read and understood the project's contribution guidelines.
+      options:
+        - label: I have read and agree to the guidelines.
+          required: true
