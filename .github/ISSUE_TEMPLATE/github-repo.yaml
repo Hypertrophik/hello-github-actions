@@ -27,14 +27,9 @@ body:
       options:
         - Public
         - Private
+        - Internal
     validations:
       required: true
-  - type: input
-    id: rulesets
-    attributes:
-      label: Rulesets
-      description: Specify any required rulesets, such as branch protection rules (e.g., "main branch requires 2 approvals").
-      placeholder: main branch requires 1 approval
   - type: textarea
     id: team-membership
     attributes:
@@ -47,6 +42,20 @@ body:
     validations:
       required: true
   - type: textarea
+    id: secrets-access
+    attributes:
+      label: Secrets Access
+      description: If this repository needs access to any secrets, please list them and provide a brief justification for each.
+      placeholder: |
+        - SECRET_KEY: Used for API authentication.
+        - DB_PASSWORD: For connecting to the production database.
+  - type: input
+    id: rulesets
+    attributes:
+      label: Rulesets
+      description: Specify any required rulesets, such as branch protection rules (e.g., "main branch requires 2 approvals").
+      placeholder: main branch requires 1 approval
+  - type: textarea
     id: approvers
     attributes:
       label: Approvers
@@ -56,11 +65,4 @@ body:
         @janesmith
     validations:
       required: true
-  - type: textarea
-    id: secrets-access
-    attributes:
-      label: Secrets Access
-      description: If this repository needs access to any secrets, please list them and provide a brief justification for each.
-      placeholder: |
-        - SECRET_KEY: Used for API authentication.
-        - DB_PASSWORD: For connecting to the production database.
+
