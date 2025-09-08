@@ -1,0 +1,109 @@
+name: Repository Transfer Request
+description: Request to transfer a repository to Rancher
+title: "[Repo Transfer]: ${{ inputs.repo_name }} Repository Transfer"
+labels: ["repo transfer", "EIO"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Repository Transfer Request
+        Please provide the following information to request a repository transfer.
+
+  - type: input
+    id: repo_name
+    attributes:
+      label: Repository Name
+      description: The name of the repository to be transferred
+      placeholder: e.g., my-awesome-project
+    validations:
+      required: true
+
+  - type: input
+    id: current_owner
+    attributes:
+      label: Current Owner
+      description: The current owner (user or organization) of the repository
+      placeholder: e.g., current-org
+    validations:
+      required: true
+
+  - type: input
+    id: target_owner
+    attributes:
+      label: Target Owner
+      description: The target owner (user or organization) for the transfer
+      placeholder: e.g., rancher
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Allowed License Types
+
+        Please ensure the repository uses one of the [approved licenses](https://github.com/rancher/security-team/blob/main/docs/rancher-licensing-standards.md).
+
+        ### Favored Licenses
+        - Apache 2
+        - MIT
+
+        ### Approved Licenses
+        - 3-BSD, 2-BSD, and 0-BSD
+        - Licenses approved by CNFC
+
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Pre-Transfer Checklist
+        Please confirm the following items have been addressed before the transfer:
+
+  - type: checkboxes
+    id: pre_transfer_checklist
+    attributes:
+      label: Pre-Transfer Checklist
+      options:
+        - label: Checked if the project license is [approved in Rancher](https://github.com/rancherlabs/rancher-security/wiki/Rancher-Licensing-Standards)
+        - label: Reviewed and aligned on removal of outside contributors
+        - label: Aligned on removal/rotation of secrets and deploy keys
+        - label: Aligned on removal of integrated GitHub Apps
+        - label: Obtained approval from requester's engineering manager
+        - label: Checked if the repository uses any GitHub Actions not in the [GHA allowed list](https://github.com/rancher/security-team/blob/main/docs/rancher-gha-standards.md#allowed-github-actions)
+        - label: Reviewed all dependencies and submodules for compliance with Rancher’s policies
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Post-Transfer Checklist
+        The following items will be addressed after the transfer:
+
+  - type: checkboxes
+    id: post_transfer_checklist
+    attributes:
+      label: Post-Transfer Checklist
+      options:
+        - label: Add branch protection rules
+        - label: Minimize users with administrator permissions
+        - label: Ensure only SUSE employees retain committer access
+        - label: Verify only Rancher approved webhooks are in use
+        - label: Confirm secrets and deploy keys were rotated
+        - label: Verify only approved GitHub Apps are installed
+        - label: Check no email notifications are configured to external domains
+        - label: Verify GitHub Pages is disabled
+        - label: Confirm GitHub Sponsorships is disabled
+        - label: Update documentation to reflect the new ownership and any changes in processes
+
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: Additional Information
+      description: "Please provide any additional information or context for this transfer request (optional). Examples: reasons for transfer, any known issues, etc."
+      placeholder: Any other details we should know about...
+
+  - type: markdown
+    attributes:
+      value: |
+        By submitting this form, you confirm that:
+        - You have reviewed and addressed all items in the pre-transfer checklist.
+        - You acknowledge that failure to complete the checklist may result in delays or rejection of the transfer request.
