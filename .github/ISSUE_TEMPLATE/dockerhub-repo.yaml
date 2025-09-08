@@ -1,0 +1,21 @@
+name: DockerHub Repo Request
+description: Request a new DockerHub repository.
+title: "docker-repo-request: <repo-name>"
+labels: ["enhancement", "docker"]
+body:
+  - type: input
+    id: repo-name
+    attributes:
+      label: Repository Name
+      description: The desired name for the new DockerHub repository.
+      placeholder: my-awesome-project
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Repository Purpose
+      description: A brief description of what this repository will be used for.
+      placeholder: This repo will contain the Docker image for our new web application.
+    validations:
+      required: true
